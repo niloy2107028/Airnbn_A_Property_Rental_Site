@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * users table e role column add korbo
      */
     public function up(): void
     {
@@ -17,7 +17,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole role column remove
      */
     public function down(): void
     {

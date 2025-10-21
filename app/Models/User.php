@@ -11,9 +11,10 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    // auth::attempt use korte hoile deya lage 
 
     /**
-     * The attributes that are mass assignable.
+     * mass assign kora jabe eita diye
      *
      * @var list<string>
      */
@@ -23,9 +24,10 @@ class User extends Authenticatable
         'password',
         'role',
     ];
+    //mass assignment security
 
     /**
-     * The attributes that should be hidden for serialization.
+     * JSON e convert korle ei field gulo hide hobe
      *
      * @var list<string>
      */
@@ -35,7 +37,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * automatic casting e convert hobe
      *
      * @return array<string, string>
      */
@@ -48,33 +50,37 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the listings owned by this user.
-     * Equivalent to Mongoose populate('owner')
+     * user er nijossho sob listing
      */
     public function listings()
     {
         return $this->hasMany(Listing::class, 'owner_id');
+        //$user->listings returns all listings jekhane owner_id = user.id
     }
 
     /**
-     * Get the reviews authored by this user.
-     * Equivalent to Mongoose populate('author')
+     * user ja ja review likheche
      */
     public function reviews()
     {
         return $this->hasMany(Review::class, 'author_id');
+        // $user->reviews return korbe all reviews this user authored
     }
 
     /**
-     * Get the bookings made by this user (as guest)
+     * ei guest er sob bookings
      */
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+        // $user->bookings returns all bookings made by this user
+        // uses default foreign key user_id
+
     }
 
+    // Helper methods 
     /**
-     * Check if user is a host
+     * host kina check
      */
     public function isHost()
     {
@@ -82,7 +88,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if user is a guest
+     * guest kina
      */
     public function isGuest()
     {
@@ -90,7 +96,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if host can create more listings (max 5)
+     * aro listing create korte parbe kina (max 5 allowed)
      */
     public function canCreateListing()
     {
@@ -98,7 +104,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get pending bookings for host's listings
+     * host er listing e pending bookings gulo
      */
     public function pendingBookings()
     {
@@ -108,7 +114,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if guest has a pending or confirmed booking
+     * current e active booking ache kina
      */
     public function hasActiveBooking()
     {

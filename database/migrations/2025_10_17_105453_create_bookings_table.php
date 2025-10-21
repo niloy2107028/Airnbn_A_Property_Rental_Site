@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * bookings table banabo
      */
     public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('listing_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Guest who made booking
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // je guest book korse
             $table->integer('persons')->unsigned();
             $table->date('check_in_date');
             $table->date('check_out_date');
@@ -25,7 +25,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole drop
      */
     public function down(): void
     {

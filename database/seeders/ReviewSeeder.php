@@ -11,16 +11,15 @@ use Illuminate\Database\Seeder;
 class ReviewSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     * Creates reviews from guest users for various listings
-     * Ensures diverse ratings and realistic comments
+     * reviews seed kori
+     * guest users theke listing gulo te reviews add hobe
      */
     public function run(): void
     {
-        // Get all guest users
+        // sob guest users ber kori
         $guests = User::where('role', 'guest')->get();
 
-        // Get all listings
+        // sob listings ber kori
         $listings = Listing::all();
 
         if ($guests->isEmpty() || $listings->isEmpty()) {
@@ -28,7 +27,7 @@ class ReviewSeeder extends Seeder
             return;
         }
 
-        // Predefined review comments (Banglish style for variety)
+        // pre-defined review comments different ratings er
         $reviewComments = [
             // 5-star reviews
             [
@@ -123,23 +122,23 @@ class ReviewSeeder extends Seeder
             ],
         ];
 
-        // Create reviews - distribute among listings
+        // reviews create kori - listings e distribute korbo
         $reviewIndex = 0;
 
-        // Each guest will write 6-7 reviews (total ~20 reviews across 28 listings)
+        // prottek guest 6-7 ta review likhbe (total ~20 reviews 28 listings e)
         foreach ($guests as $guestIndex => $guest) {
-            // Each guest reviews 6-7 different listings
+            // prottek guest 6-7 different listings review korbe
             $reviewCount = ($guestIndex === 0) ? 7 : 6;
 
             for ($i = 0; $i < $reviewCount; $i++) {
-                // Get a listing (distribute reviews across different listings)
+                // kon listing review hobe
                 $listingIndex = ($guestIndex * 7 + $i) % $listings->count();
                 $listing = $listings[$listingIndex];
 
-                // Get review data
+                // review data ber kori
                 $reviewData = $reviewComments[$reviewIndex % count($reviewComments)];
 
-                // Create the review
+                // review create
                 Review::create([
                     'comment' => $reviewData['comment'],
                     'rating' => $reviewData['rating'],

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * migration run korle table create hobe
      */
     public function up(): void
     {
@@ -35,9 +35,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     * The down() function is used to undo the migration.
-     * removes the listings table
+     * migration rollback hole listings table drop hobe
      */
     public function down(): void
     {

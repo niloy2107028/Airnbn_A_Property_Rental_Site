@@ -25,7 +25,7 @@ class Booking extends Model
     ];
 
     /**
-     * Get the listing that this booking belongs to
+     * ei booking ta kon listing er jonno seta get kore
      */
     public function listing()
     {
@@ -33,7 +33,7 @@ class Booking extends Model
     }
 
     /**
-     * Get the guest user who made the booking
+     * je guest eta book korche tar info
      */
     public function user()
     {
@@ -41,7 +41,7 @@ class Booking extends Model
     }
 
     /**
-     * Check if booking is pending
+     * booking ta pending kina check
      */
     public function isPending()
     {
@@ -49,7 +49,7 @@ class Booking extends Model
     }
 
     /**
-     * Check if booking is confirmed
+     * confirmed hoye gese kina
      */
     public function isConfirmed()
     {
@@ -57,7 +57,7 @@ class Booking extends Model
     }
 
     /**
-     * Scope to get pending bookings
+     * pending bookings gulo filter kore anbo
      */
     public function scopePending($query)
     {
@@ -65,7 +65,7 @@ class Booking extends Model
     }
 
     /**
-     * Scope to get confirmed bookings
+     * confirmed bookings filter korte
      */
     public function scopeConfirmed($query)
     {

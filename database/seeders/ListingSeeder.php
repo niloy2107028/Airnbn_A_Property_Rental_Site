@@ -11,13 +11,13 @@ use Illuminate\Database\Seeder;
 class ListingSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * listing data seed kori
      */
     public function run(): void
     {
         $geocodingService = new MapboxGeocodingService();
 
-        // Get all host users for round-robin distribution
+        // sob host users ber kori round-robin distribution er jonno
         $hosts = User::where('role', 'host')->get();
 
         if ($hosts->isEmpty()) {
@@ -27,7 +27,7 @@ class ListingSeeder extends Seeder
 
         $this->command->info("Found {$hosts->count()} host users for listing distribution.");
 
-        // Sample listings data
+        // sample listing data gulo
         $sampleListings = [
             [
                 'title' => 'Cozy Beachfront Cottage',
@@ -385,21 +385,21 @@ class ListingSeeder extends Seeder
 
         $this->command->info('Seeding listings with geocoding...');
 
-        // Loop through sample listings and geocode each one
-        // Distribute listings evenly among hosts (round-robin)
+        // loop chalabo and geocode korbo
+        // sob host er moddhe equally distribute (round-robin)
         $count = 0;
         foreach ($sampleListings as $listingData) {
             $this->command->info("Processing listing " . ($count + 1) . ": {$listingData['title']}");
 
-            // Perform forward geocoding
+            // forward geocoding kori address theke coordinates pabo
             $query = "{$listingData['location']}, {$listingData['country']}";
             $geometry = $geocodingService->forwardGeocode($query);
 
-            // Assign to host using round-robin (each host gets max 5 listings)
+            // kon host k dibo round-robin e (prottek host max 5 listing pabe)
             $hostIndex = $count % $hosts->count();
             $currentHost = $hosts[$hostIndex];
 
-            // Create listing with geocoded coordinates
+            // listing create with geocoded coordinates
             Listing::create([
                 'title' => $listingData['title'],
                 'description' => $listingData['description'],

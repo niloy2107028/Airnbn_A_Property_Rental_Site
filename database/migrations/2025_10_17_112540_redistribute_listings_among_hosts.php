@@ -9,25 +9,23 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
-     * listing gula already created users er modde distribute korbo
-     * Note: This migration is mainly for updating existing data, not fresh installs
+     * already create kora listings gulo hosts der modde distribute kori
      */
     public function up(): void
     {
-        // Get all host users
+        // sob host users ber kori
         $hostIds = DB::table('users')->where('role', 'host')->pluck('id')->toArray();
 
-        // Only redistribute if we have hosts and listings
+        // hosts thakle tabei redistribute
         if (empty($hostIds)) {
-            return; // No hosts found, skip
+            return; // host nai skip kori
         }
 
-        // Get all listings
+        // sob listings ber kori
         $listings = DB::table('listings')->orderBy('id')->get();
 
         if ($listings->isEmpty()) {
-            return; // No listings to redistribute
+            return; // listing nai skip
         }
 
         // round robin diye evenly distribution
@@ -42,11 +40,11 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole sob listing first host k assign
      */
     public function down(): void
     {
-        // Revert all listings back to first host user
+        // sob listings first host k assign
         $firstHostId = DB::table('users')->where('role', 'host')->value('id');
 
         if ($firstHostId) {

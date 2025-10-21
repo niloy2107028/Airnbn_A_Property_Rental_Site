@@ -10,13 +10,12 @@ use Illuminate\Support\Facades\Hash;
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     * Creates default users with host and guest roles
-     * 6 hosts + 3 guests (Bangladeshi names)
+     * database e user data insert
+     * 6 ta host + 3 ta guest banabo
      */
     public function run(): void
     {
-        // Create 6 Host users with Bangladeshi names
+        // 6 Host user create kori
         User::create([
             'username' => 'niloy',
             'email' => 'niloy@gmail.com',
@@ -59,7 +58,7 @@ class UserSeeder extends Seeder
             'role' => 'host',
         ]);
 
-        // Create 3 Guest users with Bangladeshi names
+        // 3 ta Guest user create
         User::create([
             'username' => 'fatiha',
             'email' => 'nusrat@example.com',

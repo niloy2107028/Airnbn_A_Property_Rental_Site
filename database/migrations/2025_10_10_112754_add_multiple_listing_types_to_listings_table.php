@@ -4,25 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-/*
-To replace one old column (listing_type) with three new columns listing_type_1, listing_type_2, listing_type_3 in the existing table.
-*/
+// purano single listing_type column bad diye 3 ta new column add korbo
+// listing_type_1, listing_type_2, listing_type_3
 
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * listings table e tin ta type column add
      */
     public function up(): void
     {
         Schema::table('listings', function (Blueprint $table) {
-            // Drop the old single listing_type column if it exists
+            // purano listing_type column thakle drop kori
             if (Schema::hasColumn('listings', 'listing_type')) {
                 $table->dropColumn('listing_type');
             }
 
-            // Add three new columns for multiple listing types
+            // 3 ta notun column add kori
             if (!Schema::hasColumn('listings', 'listing_type_1')) {
                 $table->string('listing_type_1')->nullable();
             }
@@ -36,15 +34,15 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole notun 3 ta drop kore purano column restore
      */
     public function down(): void
     {
         Schema::table('listings', function (Blueprint $table) {
-            // Drop the three new columns
+            // notun 3 ta column drop
             $table->dropColumn(['listing_type_1', 'listing_type_2', 'listing_type_3']);
 
-            // Restore the old single column
+            // purano single column restore
             $table->string('listing_type')->nullable();
         });
     }

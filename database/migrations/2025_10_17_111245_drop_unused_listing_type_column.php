@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * unused listing_type column drop kori
      */
     public function up(): void
     {
         Schema::table('listings', function (Blueprint $table) {
-            // Drop the unused listing_type column (we use listing_type_1, 2, 3 instead)
+            // listing_type column drop (amra listing_type_1, 2, 3 use kori)
             if (Schema::hasColumn('listings', 'listing_type')) {
                 $table->dropColumn('listing_type');
             }
@@ -20,12 +20,12 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole column restore
      */
     public function down(): void
     {
         Schema::table('listings', function (Blueprint $table) {
-            // Restore the column if needed
+            // column restore kori jodi lagge
             $table->string('listing_type')->nullable()->after('trending_points');
         });
     }

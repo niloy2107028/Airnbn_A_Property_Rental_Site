@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * migration run hole reviews table banabo
      */
     public function up(): void
     {
@@ -16,22 +16,12 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->integer('rating')->unsigned();
 
-            // Author foreign key )
+            // Author foreign key (kon user review likhse)
             $table->foreignId('author_id')
                 ->constrained('users')
                 ->onDelete('cascade');
 
-            /*
-                foreignId('author_id') : creates a column to store the user (author) ID.
-
-                constrained('users') : connects it to the id column in the users table.
-
-                onDelete('cascade') : if the user is deleted, their reviews are also deleted.
-
-                Similarly, listing_id links each review to a listing, and deleting a listing removes its related reviews.
-            */
-
-            // Listing foreign key 
+            // Listing foreign key (kon listing er review)
             $table->foreignId('listing_id')
                 ->constrained('listings')
                 ->onDelete('cascade');
@@ -41,7 +31,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole table drop
      */
     public function down(): void
     {

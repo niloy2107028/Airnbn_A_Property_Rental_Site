@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
-     * already created users er role change korbo
-     * (UserSeeder handles user creation)
+     * age create kora users er role update kori
      */
     public function up(): void
     {
@@ -28,14 +26,14 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole sob k guest banabo
      */
     public function down(): void
     {
-        // Revert all users to guest role
+        // sob users k guest e convert
         DB::table('users')->update(['role' => 'guest']);
 
-        // Optionally delete created guest users
+        // optional: created guest users delete
         DB::table('users')->where('username', 'alice_guest')->delete();
         DB::table('users')->where('username', 'bob_guest')->delete();
     }

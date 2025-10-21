@@ -4,14 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/*
-This migration is used to add two new columns to the existing listings table — and remove them if rolled back.
-*/
+// listings table e trending_points and listing_type column add korbo
 
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * 2 ta column add - trending_points ar listing_type
      */
     public function up(): void
     {
@@ -19,18 +17,10 @@ return new class extends Migration
             $table->integer('trending_points')->default(0)->after('geometry_coordinates');
             $table->string('listing_type')->nullable()->after('trending_points');
         });
-
-        //  Adds a new column trending_points
-
-        // Type: integer
-
-        // Default value: 0
-
-        // Placed after the column geometry_coordinates
     }
 
     /**
-     * Reverse the migrations.
+     * rollback hole 2 ta column remove
      */
     public function down(): void
     {

@@ -9,8 +9,8 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     * Runs UserSeeder first, then ListingSeeder with geocoding, then ReviewSeeder
+     * database seed kori
+     * age UserSeeder tarpor ListingSeeder then ReviewSeeder
      */
     public function run(): void
     {

@@ -10,7 +10,7 @@ class Listing extends Model
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
+     * mass assign korte parbo
      *
      * @var array<int, string>
      */
@@ -32,7 +32,7 @@ class Listing extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * automatic type casting
      *
      * @var array<string, string>
      */
@@ -43,21 +43,18 @@ class Listing extends Model
     ];
 
     /**
-     * Boot the model and set up event listeners.
-     * Equivalent to Mongoose post middleware for findOneAndDelete
+     * model boot howar somoy event listeners set kori
      */
     protected static function booted()
     {
         static::deleting(function ($listing) {
-            // Delete all reviews associated with this listing
-            // Equivalent to: await ReviewModel.deleteMany({ _id: { $in: deletedListing.reviews } });
+            // listing delete hole tar sob reviews o delete
             $listing->reviews()->delete();
         });
     }
 
     /**
-     * Get the owner (user) of this listing.
-     * Equivalent to Mongoose populate('owner')
+     * listing er owner (host) ke get kori
      */
     public function owner()
     {
@@ -65,8 +62,7 @@ class Listing extends Model
     }
 
     /**
-     * Get the reviews for this listing.
-     * Equivalent to Mongoose reviews array with ObjectId refs
+     * ei listing er sob reviews
      */
     public function reviews()
     {
@@ -74,7 +70,7 @@ class Listing extends Model
     }
 
     /**
-     * Increment trending points when a booking is confirmed by the owner
+     * booking confirm hole trending points barabo
      */
     public function incrementTrendingPoints()
     {
