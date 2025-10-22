@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
+//api request korar jonno guzzle http client import also exection handling
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
@@ -12,7 +13,9 @@ use GuzzleHttp\Exception\GuzzleException;
 class MapboxGeocodingService
 {
     protected $client;
+    //guzzle http client er obj 
     protected $accessToken;
+    //env theke access token ba api key
     protected $baseUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
 
     public function __construct()

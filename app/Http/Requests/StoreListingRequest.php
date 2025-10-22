@@ -21,7 +21,7 @@ class StoreListingRequest extends FormRequest
             'listing.location' => 'required|string|max:255',
             'listing.country' => 'required|string|max:255',
             'listing.price' => 'required|numeric|min:0',
-            'listing.image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'listing.image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'listing.listing_type_1' => 'required|string|max:100',
             'listing.listing_type_2' => 'nullable|string|max:100',
             'listing.listing_type_3' => 'nullable|string|max:100',

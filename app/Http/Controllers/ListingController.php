@@ -21,6 +21,8 @@ class ListingController extends Controller
         $this->geocodingService = $geocodingService;
     }
 
+    //service er Maopbox obj use kortesi na cz each method e new new object define kora lagbe
+
     /**
      * sob listings dekhabo
      */
@@ -100,6 +102,9 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
+        //jehutu storeListingRequest class (request folder) er obj so auto validate hbe and validated updated thakbe
+
+
         // abar check kore nilam host kina
         if (!Auth::user()->isHost()) {
             return redirect()->route('listings.index')->with('error', 'Only hosts can create listings.');
@@ -137,9 +142,15 @@ class ListingController extends Controller
             try {
                 // cloudinary te upload korlam
                 $filename = 'airnbn_DEV/' . time() . '_' . $uploadedFile->getClientOriginalName();
+                //file temporary server er temp folder e stored thake after form submission
+
+
                 $path = Storage::disk('cloudinary')->putFileAs('airnbn_DEV', $uploadedFile, time() . '_' . $uploadedFile->getClientOriginalName());
+                //upload korlam
+                //cloudinary storage driver use kore put file as diye
                 //pathe folder name and filename dibo time+original name mileye
                 // cloudinary er URL banalam
+
                 $cloudName = config('filesystems.disks.cloudinary.cloud');
                 //config folder er filesystem file through te env theke cloude name anbe
                 $imageUrl = "https://res.cloudinary.com/{$cloudName}/image/upload/{$path}";
