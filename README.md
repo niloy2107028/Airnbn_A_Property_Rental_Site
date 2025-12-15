@@ -1,16 +1,287 @@
-# Airnbn Project Documentation
+# 🏠 Airnbn - Laravel Property Rental Platform
 
-This is a Laravel-based Airbnb clone project. It provides a platform for hosts to list properties and guests to book them.
+<div align="center">
 
-## Table of Contents
+[![Laravel](https://img.shields.io/badge/Laravel-12.0-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-Railway-4479A1?style=for-the-badge&logo=mysql)](https://railway.app)
 
-1. [Database Migrations, Factories, and Seeders](#1-database-migrations-factories-and-seeders)
-2. [Controllers and Their Functions](#2-controllers-and-their-functions)
-3. [Middlewares](#3-middlewares)
-4. [Models](#4-models)
-5. [Mapbox Services](#5-mapbox-services)
-6. [Routes, Views, JS, and CSS](#6-routes-views-js-and-css)
-7. [Necessary Artisan Commands](#7-necessary-artisan-commands)
+**A full-stack property rental platform inspired by Airbnb, built with Laravel, featuring real-time bookings, interactive maps, and cloud storage.**
+
+<br/>
+
+<a href="https://youtube.com/your-video-link" target="_blank">
+  <img src="https://img.shields.io/badge/▶️_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube Demo" height="50"/>
+</a>
+&nbsp;&nbsp;&nbsp;
+<a href="https://your-deployed-site.com" target="_blank">
+  <img src="https://img.shields.io/badge/🌐_Live_Demo-00C853?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Demo" height="50"/>
+</a>
+
+<br/><br/>
+
+[Features](#-features) • [Installation](#-installation) • [Tech Stack](#-tech-stack) • [Documentation](#-documentation) • [Deployment](#-deployment)
+
+</div>
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+
+### 🏠 Homepage
+
+![Homepage](screenshots/homepage.png)
+
+### 🏡 Listing Details
+
+![Listing](screenshots/listing-detail.png)
+
+### 📊 Host Dashboard
+
+![Dashboard](screenshots/host-dashboard.png)
+
+</div>
+
+---
+
+## ✨ Features
+
+### For Guests
+
+-   🔍 **Advanced Search & Filtering** - Search by location, property type, and trending listings
+-   🗺️ **Interactive Maps** - Mapbox integration for location visualization
+-   📅 **Easy Booking System** - Book properties with date selection and special requests
+-   ⭐ **Reviews & Ratings** - Leave reviews and ratings for properties
+-   📱 **Responsive Design** - Works seamlessly on mobile, tablet, and desktop
+-   🌙 **Dark Mode** - Toggle between light and dark themes
+
+### For Hosts
+
+-   🏡 **Property Management** - Create, edit, and delete listings
+-   📊 **Host Dashboard** - Manage bookings and view statistics
+-   ✅ **Booking Controls** - Accept or reject booking requests
+-   ☁️ **Cloud Image Storage** - Images stored on Cloudinary for fast loading
+-   🌍 **Automatic Geocoding** - Location coordinates auto-generated via Mapbox
+
+### Technical Features
+
+-   🔐 **Authentication System** - Secure login/signup with role-based access (Guest/Host)
+-   💾 **Cloud Database** - Railway MySQL for production-ready data storage
+-   🎨 **Modern UI/UX** - Clean, intuitive interface with custom CSS
+-   🔔 **Flash Messages** - Real-time feedback for user actions
+-   🛡️ **Middleware Protection** - Authorization checks for secure operations
+
+---
+
+## 🚀 Tech Stack
+
+| Category           | Technologies                               |
+| ------------------ | ------------------------------------------ |
+| **Backend**        | Laravel 12.0, PHP 8.2                      |
+| **Database**       | MySQL (Railway Cloud)                      |
+| **Frontend**       | Blade Templates, JavaScript, CSS3          |
+| **APIs**           | Mapbox Geocoding API, Cloudinary Media API |
+| **Storage**        | Cloudinary (Images)                        |
+| **Authentication** | Laravel Authentication                     |
+| **Build Tools**    | Vite, Composer, NPM                        |
+
+---
+
+## 📋 Table of Contents
+
+1. [Features](#-features)
+2. [Demo Links](#-demo-links)
+3. [Tech Stack](#-tech-stack)
+4. [Installation](#-installation)
+5. [Configuration](#-configuration)
+6. [Database Setup](#-database-setup)
+7. [Project Structure](#-project-structure)
+    - [Database Migrations & Seeders](#1-database-migrations-factories-and-seeders)
+    - [Controllers](#2-controllers-and-their-functions)
+    - [Middlewares](#3-middlewares)
+    - [Models](#4-models)
+    - [Services](#5-mapbox-services)
+    - [Routes & Views](#6-routes-views-js-and-css)
+8. [Artisan Commands](#7-necessary-artisan-commands)
+9. [Deployment](#-deployment)
+10. [Contributing](#-contributing)
+11. [License](#-license)
+
+---
+
+## 🛠️ Installation
+
+### Prerequisites
+
+-   PHP >= 8.2
+-   Composer
+-   Node.js & NPM
+-   MySQL (or Railway MySQL)
+-   Cloudinary Account
+-   Mapbox Account
+
+### Quick Start
+
+1. **Clone the repository**
+
+    ```bash
+    git clone https://github.com/yourusername/airnbn.git
+    cd airnbn
+    ```
+
+2. **Install Dependencies**
+
+    ```bash
+    composer install
+    npm install
+    ```
+
+3. **Environment Setup**
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4. **Configure Environment Variables**
+
+    Edit `.env` file with your credentials:
+
+    ```env
+    # App Settings
+    APP_NAME=Airnbn
+    APP_ENV=local
+    APP_DEBUG=true
+    APP_URL=http://localhost:8000
+
+    # Database (Railway MySQL)
+    DB_CONNECTION=mysql
+    DB_HOST=your-railway-host.proxy.rlwy.net
+    DB_PORT=29678
+    DB_DATABASE=railway
+    DB_USERNAME=root
+    DB_PASSWORD=your-password
+
+    # Cloudinary
+    CLOUDINARY_CLOUD_NAME=your-cloud-name
+    CLOUDINARY_API_KEY=your-api-key
+    CLOUDINARY_API_SECRET=your-api-secret
+
+    # Mapbox
+    MAPBOX_ACCESS_TOKEN=your-mapbox-token
+    ```
+
+5. **Run Migrations & Seed Database**
+
+    ```bash
+    php artisan migrate
+    php artisan db:seed
+    ```
+
+6. **Build Assets**
+
+    ```bash
+    npm run build
+    ```
+
+7. **Start Development Server**
+
+    ```bash
+    php artisan serve
+    ```
+
+    Visit: `http://localhost:8000`
+
+### Default Login Credentials (After Seeding)
+
+**Host Account:**
+
+-   Email: `karim@example.com`
+-   Password: `12345678`
+
+**Guest Account:**
+
+-   Email: `fatema@example.com`
+-   Password: `12345678`
+
+---
+
+## ⚙️ Configuration
+
+### Cloudinary Setup
+
+1. Sign up at [Cloudinary](https://cloudinary.com)
+2. Get your Cloud Name, API Key, and API Secret from Dashboard
+3. Add to `.env` file
+
+### Mapbox Setup
+
+1. Sign up at [Mapbox](https://mapbox.com)
+2. Create an access token
+3. Add to `.env` as `MAPBOX_ACCESS_TOKEN`
+
+### Railway MySQL Setup
+
+1. Create a MySQL database on [Railway](https://railway.app)
+2. Copy connection details from Variables tab
+3. Use `MYSQL_PUBLIC_URL` to extract host, port, and credentials
+4. Update `.env` file
+
+---
+
+## 🗄️ Database Setup
+
+### Using Railway (Production)
+
+```bash
+# Already configured in .env with Railway credentials
+php artisan migrate --force
+php artisan db:seed
+```
+
+### Using Local MySQL (Development)
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=airnbn
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+## 📁 Project Structure
+
+### Overview
+
+```
+Airnbn/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/      # Business logic
+│   │   ├── Middleware/       # Request filtering
+│   │   └── Requests/         # Form validation
+│   ├── Models/               # Eloquent models
+│   └── Services/             # External API services
+├── database/
+│   ├── migrations/           # Database schema
+│   ├── seeders/              # Sample data
+│   └── factories/            # Model factories
+├── public/
+│   ├── css/                  # Stylesheets
+│   └── js/                   # JavaScript files
+├── resources/
+│   └── views/                # Blade templates
+├── routes/
+│   └── web.php               # Application routes
+└── config/                   # Configuration files
+```
+
+---
 
 ## 1. Database Migrations, Factories, and Seeders
 
@@ -177,23 +448,173 @@ Used in ListingController for geocoding locations during creation/update, and in
 
 Dark mode is implemented via body class toggle, with styles in common.css and others.
 
+---
+
 ## 7. Necessary Artisan Commands
 
--   `php artisan migrate`: Run database migrations.
--   `php artisan db:seed`: Seed the database with users and listings.
--   `php artisan serve`: Start the development server.
--   `php artisan make:model ModelName`: Create a new model.
--   `php artisan make:controller ControllerName`: Create a new controller.
--   `php artisan make:migration migration_name`: Create a new migration.
--   `php artisan make:seeder SeederName`: Create a new seeder.
--   `php artisan make:middleware MiddlewareName`: Create a new middleware.
--   `php artisan make:request RequestName`: Create a new form request.
--   `php artisan route:list`: List all routes.
--   `php artisan tinker`: Interactive shell for testing code.
+### Development Commands
 
-For production:
+```bash
+# Database
+php artisan migrate              # Run migrations
+php artisan db:seed             # Seed database
+php artisan migrate:fresh --seed # Reset and seed database
 
--   `php artisan config:cache`: Cache configuration.
--   `php artisan route:cache`: Cache routes.
--   `php artisan view:cache`: Cache views.
--   `php artisan migrate --seed`: Migrate and seed in one command.
+# Server
+php artisan serve               # Start development server
+php artisan tinker              # Interactive shell
+
+# Code Generation
+php artisan make:model ModelName
+php artisan make:controller ControllerName
+php artisan make:migration migration_name
+php artisan make:seeder SeederName
+php artisan make:middleware MiddlewareName
+php artisan make:request RequestName
+
+# Utilities
+php artisan route:list          # List all routes
+php artisan config:clear        # Clear config cache
+php artisan cache:clear         # Clear application cache
+```
+
+### Production Commands
+
+```bash
+php artisan config:cache        # Cache configuration
+php artisan route:cache         # Cache routes
+php artisan view:cache          # Cache views
+php artisan optimize            # Optimize application
+php artisan migrate --force     # Run migrations in production
+```
+
+---
+
+## 🚀 Deployment
+
+### Deploying to Railway
+
+1. **Push to GitHub**
+
+    ```bash
+    git init
+    git add .
+    git commit -m "Initial commit"
+    git remote add origin https://github.com/yourusername/airnbn.git
+    git push -u origin main
+    ```
+
+2. **Create Railway Project**
+
+    - Go to [Railway](https://railway.app)
+    - Click "New Project" → "Deploy from GitHub"
+    - Select your repository
+
+3. **Add MySQL Database**
+
+    - In Railway dashboard, click "New" → "Database" → "MySQL"
+    - Copy `MYSQL_PUBLIC_URL` from Variables tab
+
+4. **Configure Environment Variables**
+
+    In Railway project settings, add these variables:
+
+    ```env
+    APP_NAME=Airnbn
+    APP_ENV=production
+    APP_KEY=base64:your-key-here
+    APP_DEBUG=false
+    APP_URL=https://your-app.railway.app
+
+    # Database (auto-configured by Railway)
+    DB_CONNECTION=mysql
+
+    # Cloudinary
+    CLOUDINARY_CLOUD_NAME=your-cloud-name
+    CLOUDINARY_API_KEY=your-api-key
+    CLOUDINARY_API_SECRET=your-api-secret
+
+    # Mapbox
+    MAPBOX_ACCESS_TOKEN=your-mapbox-token
+
+    # Session & Cache
+    SESSION_DRIVER=database
+    CACHE_DRIVER=database
+    ```
+
+5. **Configure Build & Start Commands**
+
+    **Build Command:**
+
+    ```bash
+    composer install --optimize-autoloader --no-dev && php artisan config:cache && php artisan route:cache && php artisan view:cache && npm install && npm run build
+    ```
+
+    **Start Command:**
+
+    ```bash
+    php artisan migrate --force && php artisan db:seed && php artisan serve --host=0.0.0.0 --port=$PORT
+    ```
+
+6. **Deploy**
+    - Railway will automatically deploy
+    - Visit your deployed URL
+    - Done! 🎉
+
+### Alternative: Deploying to Render
+
+Similar process to Railway:
+
+1. Create Web Service from GitHub
+2. Set build command and start command
+3. Add environment variables
+4. Connect to external MySQL database
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+
+-   GitHub: [@niloy2107028](https://github.com/niloy2107028)
+-   Email: shoaibhasan600@gmail.com
+
+---
+
+`
+
+## 🙏 Acknowledgments
+
+-   [Laravel](https://laravel.com) - The PHP Framework
+-   [Cloudinary](https://cloudinary.com) - Cloud Image Storage
+-   [Mapbox](https://mapbox.com) - Mapping & Geocoding
+-   [Railway](https://railway.app) - Cloud Database & Hosting
+-   Inspired by [Airbnb](https://airbnb.com)
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you find it helpful!**
+
+Made with ❤️ by Sohaib Hasan Niloy
+
+</div>

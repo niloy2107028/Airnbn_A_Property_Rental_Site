@@ -168,7 +168,7 @@
                     <p class="card-text">
                         <strong>Owned by: {{ $requireData->owner->username }}</strong><br />
                         {{ $requireData->description }}<br />
-                        &#2547; {{ number_format($requireData->price) }}<br />
+                        &#2547; {{ number_format($requireData->price) }}/night<br />
                         {{ $requireData->country }}<br />
                         {{ $requireData->location }}
                     </p>
