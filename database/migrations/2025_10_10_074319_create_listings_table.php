@@ -23,7 +23,15 @@ return new class extends Migration
 
             // Geometry field (GeoJSON Point)
             $table->string('geometry_type')->default('Point');
-            $table->json('geometry_coordinates'); // [longitude, latitude]
+            $table->text('geometry_coordinates'); // [longitude, latitude] - Using TEXT for older MySQL compatibility
+
+            // Listing types (multiple types per listing)
+            $table->string('listing_type_1')->nullable();
+            $table->string('listing_type_2')->nullable();
+            $table->string('listing_type_3')->nullable();
+
+            // Trending points for ranking
+            $table->integer('trending_points')->default(0);
 
             // Owner foreign key 
             $table->foreignId('owner_id')

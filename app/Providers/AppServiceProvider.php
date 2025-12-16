@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Fix for older MySQL versions (FreeSQLDatabase)
+        Schema::defaultStringLength(191);
+
         // Share authenticated user with all views
         view()->composer('*', function ($view) {
             $view->with('currUser', auth()->user());
