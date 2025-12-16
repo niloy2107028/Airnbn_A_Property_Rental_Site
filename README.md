@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/▶️_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube Demo" height="50"/>
 </a>
 &nbsp;&nbsp;&nbsp;
-<a href="https://your-deployed-site.com" target="_blank">
+<a href="https://airnbn-a-property-rental-site.onrender.com/" target="_blank">
   <img src="https://img.shields.io/badge/🌐_Live_Demo-00C853?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Demo" height="50"/>
 </a>
 
